@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zuqva — Free TDEE Calculator and Kitchen Ingredient Converter</title><meta name="description" content="Free, browser-only TDEE calculator and kitchen grams-to-millilitres converter. No signup, no account, your numbers stay on your device.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="canonical" href="https://zuqva.dev/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=optional"><link rel="stylesheet" href="style.css"><script src="main.js" defer></script><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ4Z0VNN56"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZ4Z0VNN56');
+</script>
+</head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header><div class="wrap top"><a class="brand" href="index.html"><img src="logo.svg" alt="Zuqva logo" width="36" height="36">Zuqva</a><nav><a href="index.html">Home</a><a href="tdee.html">TDEE Calculator</a><a href="kitchen-converter.html">Kitchen Converter</a><a href="guides/what-is-tdee.html">Guides</a><a href="about.html">About</a></nav></div></header>
+<main id="main" class="wrap">
+<nav class="switcher" aria-label="Choose a tool"><button type="button" aria-selected="true" onclick="switchTool('tdee')">TDEE Calculator</button><button type="button" aria-selected="false" onclick="switchTool('kitchen')">Kitchen Converter</button></nav>
+<div class="tape" aria-hidden="true"></div>
+<div class="mini-hero" aria-hidden="true"><div class="mini-cup"><div class="mini-liquid"></div></div><div class="mini-steam"><span></span><span></span><span></span></div></div>
+<h1>Two tools, one page. Pick a tool above.</h1>
+<p class="lead">Type in your numbers, get an answer, and close the tab. No signup, no account, nothing stored, nothing sent anywhere.</p>
+
+<section class="tool-panel" id="panel-tdee">
+<h2>TDEE Calculator</h2>
+<p>How many calories your body uses in a day, from your age, sex, height, weight and activity — plus simple cut, maintain and bulk targets.</p>
+<div class="card"><form onsubmit="event.preventDefault();calcTDEE();">
+<label for="age">Age (years)</label><input id="age" type="number" min="10" max="100" value="30" required>
+<label for="sex">Sex</label><select id="sex"><option value="male">Male</option><option value="female">Female</option></select>
+<label for="height">Height</label><input id="height" type="number" min="100" max="250" value="180" required><label for="height-unit">Height unit</label><select id="height-unit" onchange="toggleHeightInputs()"><option value="cm">Centimetres (cm)</option><option value="m">Metres (m)</option><option value="in">Inches (in)</option><option value="ft">Feet (ft, decimal)</option><option value="ft-in">Feet + inches</option></select><div id="height-ftin" style="display:none"><label for="height-feet">Feet</label><input id="height-feet" type="number" min="0" max="8" value="5"><label for="height-inches">Inches</label><input id="height-inches" type="number" min="0" max="11" step="0.5" value="11"></div>
+<label for="weight">Weight</label><input id="weight" type="number" min="25" max="350" step="0.1" value="80" required><label for="weight-unit">Weight unit</label><select id="weight-unit"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option><option value="oz">Ounces (oz)</option><option value="st">Stone (st)</option></select>
+<label for="activity">Activity level</label><select id="activity">
+<option value="1.2">Sedentary — desk job, little exercise (×1.2)</option>
+<option value="1.375">Lightly active — light exercise 1–3 days a week (×1.375)</option>
+<option value="1.55" selected>Moderately active — moderate exercise 3–5 days a week (×1.55)</option>
+<option value="1.725">Very active — hard exercise 6–7 days a week (×1.725)</option>
+<option value="1.9">Extra active — very hard exercise, physical job (×1.9)</option></select>
+<p><button class="btn" type="submit">Calculate</button></p></form>
+<div id="tdee-error" class="error" style="display:none"></div>
+<div id="tdee-result" class="result" style="display:none"><strong>Your result</strong>
+<div class="nums"><div class="num"><span>BMR (at rest)</span><b><span id="bmr"></span> kcal/day</b></div>
+<div class="num"><span>TDEE (with activity)</span><b><span id="tdee"></span> kcal/day</b></div>
+<div class="num"><span>Maintain</span><b><span id="tdee2"></span> kcal/day</b></div></div>
+<p class="small" style="margin-top:10px"><span id="tdee-converted"></span></p><p style="margin-top:14px"><strong>Cut:</strong> <span id="cut"></span> kcal/day (TDEE − 500) · <strong>Bulk:</strong> <span id="bulk"></span> kcal/day (TDEE + 500)</p></div></div>
+<div class="note"><strong>Estimates only — not medical advice.</strong> This calculator gives a general estimate, not a personal prescription. If you have a medical condition, are pregnant, or are managing your weight for health reasons, talk to a doctor or registered dietitian before changing what you eat.</div>
+<p>Worked example: a 30-year-old man, 80 kg, 180 cm, moderately active: BMR 1,780 kcal/day, TDEE 2,759 kcal/day. Full page: <a href="tdee.html">TDEE calculator</a>.</p>
+</section>
+
+<section class="tool-panel" id="panel-kitchen" hidden>
+<h2>Kitchen Ingredient Converter</h2>
+<p>Grams, millilitres and US cups for real ingredients — because 100 g of flour and 100 g of honey are not the same volume at all.</p>
+<div class="card"><form onsubmit="event.preventDefault();convertKitchen();">
+<label for="ingredient">Ingredient</label><select id="ingredient">
+<option>water</option><option>milk</option><option selected>all-purpose flour</option><option>granulated sugar</option><option>butter</option><option>honey</option><option>cooking oil</option><option>atta (whole-wheat flour)</option><option>suji / semolina</option></select>
+<label for="amount">Amount</label><input id="amount" type="number" min="0.1" step="0.1" value="100" required>
+<label for="from-unit">From</label><select id="from-unit"><option value="g">Grams (g)</option><option value="kg">Kilograms (kg)</option><option value="oz">Ounces (oz, weight)</option><option value="lb">Pounds (lb)</option><option value="ml">Millilitres (ml)</option><option value="l">Litres (l)</option><option value="cup">US cups</option><option value="metric-cup">Metric cups (250 ml)</option><option value="tbsp">Tablespoons (tbsp)</option><option value="tsp">Teaspoons (tsp)</option><option value="floz">Fluid ounces (fl oz)</option></select><label for="to-unit">To</label><select id="to-unit"><option value="all">All units (show everything)</option><option value="g">Grams (g)</option><option value="kg">Kilograms (kg)</option><option value="oz">Ounces (oz, weight)</option><option value="lb">Pounds (lb)</option><option value="ml">Millilitres (ml)</option><option value="l">Litres (l)</option><option value="cup">US cups</option><option value="metric-cup">Metric cups (250 ml)</option><option value="tbsp">Tablespoons (tbsp)</option><option value="tsp">Teaspoons (tsp)</option><option value="floz">Fluid ounces (fl oz)</option></select>
+<p><button class="btn" type="submit">Convert</button></p></form>
+<div id="kitchen-error" class="error" style="display:none"></div>
+<div id="kitchen-result" class="result" style="display:none"><strong>Approximate result for <span id="k-ing"></span></strong><div id="k-to-main" style="display:none"><strong>To: <span id="k-to-value"></span> <span id="k-to-label"></span></strong><br><span class="small">All units below:</span></div> (density <span id="k-density"></span> g/ml)
+<div class="nums"><div class="num"><span>Grams</span><b><span id="k-grams"></span> g</b></div><div class="num"><span>Kilograms</span><b><span id="k-kg"></span> kg</b></div><div class="num"><span>Ounces (weight)</span><b><span id="k-oz"></span> oz</b></div><div class="num"><span>Pounds</span><b><span id="k-lb"></span> lb</b></div><div class="num"><span>Millilitres</span><b><span id="k-ml"></span> ml</b></div><div class="num"><span>Litres</span><b><span id="k-l"></span> l</b></div><div class="num"><span>US cups</span><b><span id="k-cups"></span> cups</b></div><div class="num"><span>Metric cups</span><b><span id="k-metric-cups"></span> cups</b></div><div class="num"><span>Tablespoons</span><b><span id="k-tbsp"></span> tbsp</b></div><div class="num"><span>Teaspoons</span><b><span id="k-tsp"></span> tsp</b></div><div class="num"><span>Fluid ounces</span><b><span id="k-floz"></span> fl oz</b></div></div></div></div>
+<div class="note"><strong>Every result here is APPROXIMATE.</strong> Density varies by brand, grind, moisture and how tightly an ingredient is packed or scooped. For baking, a kitchen scale beats any volume conversion. Use these numbers to follow a recipe, not to measure medicine or anything where an exact dose matters.</div>
+<p>Worked example: 100 g all-purpose flour = 189 ml = 0.80 US cups. Full page with the density table: <a href="kitchen-converter.html">Kitchen ingredient converter</a>.</p>
+</section>
+
+<h2>Start with a guide</h2><ul>
+<li><a href="guides/what-is-tdee.html">What is TDEE and how is it calculated?</a></li>
+<li><a href="guides/bmr-vs-tdee.html">BMR vs TDEE: what is the difference?</a></li>
+<li><a href="guides/tdee-weight-goals.html">How to use your TDEE for weight loss, maintenance, or gain</a></li>
+<li><a href="guides/grams-vs-ml.html">Why grams and millilitres are not the same thing in cooking</a></li>
+<li><a href="guides/common-conversions.html">Common kitchen conversions, with worked examples</a></li>
+<li><a href="guides/pakistani-kitchen.html">Pakistani kitchen measurements: atta, ghee, and desi recipes in grams and cups</a></li></ul>
+<div class="note"><strong>A plain promise:</strong> every result on this site is an estimate. The TDEE calculator is not medical advice, and the kitchen converter is approximate because ingredient density varies by brand, grind and packing. Both pages say so, clearly, next to the result — not hidden in small print.</div></main>
+<footer><div class="wrap"><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a> · <a href="tdee.html">TDEE Calculator</a> · <a href="kitchen-converter.html">Kitchen Converter</a></p><p>Two free tools, no signup, no account. Your numbers never leave your browser.</p></div></footer></body></html>

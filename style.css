@@ -1,0 +1,97 @@
+/* UI/UX Pro Max design system — Kitchen and Calorie
+   Source: design-system/kitchen-and-calorie/MASTER.md
+   Pattern: Feature-Rich Showcase. Style: Vibrant & Block-based.
+   Adaptation noted in DESIGN-PROMAX.md: form cards are not clickable,
+   so they do not get cursor:pointer even though MASTER's generic card does. */
+:root{
+  --color-primary:#F97316; --color-on-primary:#0F172A;
+  --color-secondary:#FB923C; --color-on-secondary:#0F172A;
+  --color-accent:#22C55E; --color-on-accent:#0F172A;
+  --color-background:#1F2937; --color-foreground:#F8FAFC;
+  --color-card:#313742; --color-card-foreground:#F8FAFC;
+  --color-muted:#37414F; --color-muted-foreground:#CBD5E1;
+  --color-border:#374151; --color-destructive:#EF4444; --color-ring:#F97316;
+  --space-md:16px; --space-lg:24px; --space-xl:32px; --space-2xl:48px; --space-3xl:64px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.25);
+  --shadow-lift:0 14px 28px rgba(0,0,0,.35);
+  --ease-expo:cubic-bezier(0.16, 1, 0.3, 1);
+  --t-press:140ms; --t-hover:180ms;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Barlow',system-ui,sans-serif;color:var(--color-foreground);background:var(--color-background);line-height:1.6;font-size:17px}
+::selection{background:var(--color-primary);color:var(--color-on-primary)}
+input,select,textarea{caret-color:var(--color-primary)}
+a{color:var(--color-secondary);text-decoration:underline;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--color-ring);outline-offset:2px}
+header{border-bottom:3px solid var(--color-primary);background:var(--color-background)}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:20px 0}
+.brand{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:34px;font-weight:700;text-decoration:none;letter-spacing:.5px;color:var(--color-foreground);display:inline-flex;align-items:center;gap:10px}
+.brand img{width:36px;height:36px;flex:none}
+.brand span{color:var(--color-primary)}
+nav{display:flex;gap:20px;flex-wrap:wrap;font-size:16px;font-weight:600}
+nav a{color:var(--color-foreground);text-decoration:none}
+nav a:hover{color:var(--color-primary);text-decoration:underline}
+h1{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:52px;line-height:1.05;letter-spacing:.5px;margin:var(--space-2xl) 0 12px;text-transform:uppercase;text-shadow:0 2px 0 rgba(0,0,0,.45),0 10px 28px rgba(0,0,0,.35)}
+h2{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:38px;line-height:1.1;letter-spacing:.5px;margin:var(--space-2xl) 0 10px;text-transform:uppercase}
+h3{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:26px;margin:28px 0 8px;text-transform:uppercase;letter-spacing:.5px}
+p{margin:0 0 14px;max-width:78ch}
+ul,ol{margin:0 0 16px;padding-left:22px}li{margin-bottom:6px}
+.lead{font-size:19px;color:var(--color-muted-foreground);max-width:72ch}
+/* The one bold element, kept from the previous design: tool switcher + measuring-tape rule, now in Pro Max orange */
+.switcher{display:flex;gap:8px;background:var(--color-card);border:2px solid var(--color-border);border-radius:12px;padding:8px;margin:24px 0 0;position:sticky;top:0;z-index:10}
+.switcher a,.switcher button{flex:1;text-align:center;padding:14px 10px;min-height:48px;border-radius:8px;text-decoration:none;color:var(--color-foreground);font-weight:700;font-size:16px;background:var(--color-muted);border:2px solid var(--color-border);cursor:pointer;font-family:'Barlow',system-ui,sans-serif;transition:all var(--t-hover) ease}
+.switcher button:active{transform:scale(.97);transition-duration:var(--t-press)}
+.switcher a:hover,.switcher button:hover{color:var(--color-primary)}
+.switcher a[aria-current="page"],.switcher button[aria-selected="true"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);text-decoration:none}
+.tape{height:10px;margin:0 0 6px;background:var(--color-primary);background-image:repeating-linear-gradient(90deg,var(--color-on-primary) 0 2px,transparent 2px 28px);border:2px solid var(--color-primary);border-top:0}
+.tool-panel[hidden]{display:none}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;padding:24px;margin:24px 0;box-shadow:var(--shadow-md)}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0}
+@media(max-width:640px){.tool-grid{grid-template-columns:1fr}h1{font-size:36px;margin:16px 0 8px}h2{font-size:30px}.mini-hero{display:none}.switcher{margin-top:12px}.top{padding:12px 0}}
+.tool-card{transition:transform 300ms var(--ease-expo),box-shadow 300ms var(--ease-expo)}
+.tool-card:hover,.tool-card:focus-within{transform:perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-3px);box-shadow:var(--shadow-lift)}
+.card:focus-within{box-shadow:var(--shadow-lift)}
+.tool-card h2{margin-top:0}
+.btn{display:inline-block;background:var(--color-accent);color:var(--color-on-accent);text-decoration:none;padding:14px 24px;min-height:48px;border-radius:8px;font-weight:700;font-size:16px;border:0;cursor:pointer;font-family:'Barlow',system-ui,sans-serif;transition:all 200ms ease}
+.btn{transition:all var(--t-hover) ease}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn:active{transform:translateY(1px) scale(.98);transition-duration:var(--t-press)}
+.btn.secondary{background:transparent;color:var(--color-primary);border:2px solid var(--color-primary)}
+label{display:block;font-weight:700;font-size:15px;margin:16px 0 6px}
+input,select,textarea{width:100%;padding:13px 12px;min-height:48px;border:2px solid var(--color-border);border-radius:8px;font-size:16px;background:var(--color-background);font-family:'Barlow',system-ui,sans-serif;color:var(--color-foreground)}
+.result{transform-origin:top center;will-change:transform}
+.result.is-showing{animation:result-in 500ms var(--ease-expo) both}
+@keyframes result-in{from{opacity:0;transform:perspective(800px) rotateX(-14deg) translateY(10px)}to{opacity:1;transform:perspective(800px) rotateX(0) translateY(0)}}
+.result{background:var(--color-on-primary);border:1px solid var(--color-border);border-top:8px solid var(--color-accent);border-radius:0;padding:20px;margin-top:20px}
+.result strong{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:28px;text-transform:uppercase;letter-spacing:.5px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+@media(max-width:560px){.nums{grid-template-columns:1fr}}
+.num{background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;padding:14px}
+.num b{display:block;font-family:'Barlow Condensed',system-ui,sans-serif;font-size:30px;color:var(--color-accent)}
+.num span{font-size:13px;color:var(--color-muted-foreground)}
+.error{color:#FECACA;background:#7F1D1D;border:2px solid var(--color-destructive);padding:12px;margin-top:14px;font-size:15px;border-radius:8px}
+.note{background:var(--color-muted);border-radius:8px;padding:14px 16px;margin:20px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--color-border)}
+th{background:var(--color-muted)}
+footer{border-top:3px solid var(--color-primary);margin-top:var(--space-2xl);padding:24px 0 34px;font-size:14px;color:var(--color-muted-foreground)}
+footer a{color:var(--color-muted-foreground)}
+.small{font-size:14px;color:var(--color-muted-foreground)}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;background:var(--color-card);padding:8px;position:absolute}
+@media(max-width:480px){.switcher{flex-direction:row}.switcher a,.switcher button{border-radius:8px;padding:12px 6px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.tool-card:hover,.tool-card:focus-within,.card:focus-within{transform:none;box-shadow:var(--shadow-md)}.result.is-showing{opacity:1;transform:none}.mini-liquid{height:60%}.mini-steam span{opacity:.4}}
+
+
+/* Minimal CSS animation only: one small measuring cup that fills and empties.
+   Pure CSS, no library, no JavaScript, no WebGL — it renders everywhere. */
+.mini-hero{display:flex;align-items:flex-end;gap:14px;height:86px;margin:20px 0 0}
+.mini-cup{position:relative;width:64px;height:56px;border:3px solid var(--color-secondary);border-top:0;border-radius:0 0 14px 14px;overflow:hidden;background:transparent}
+.mini-cup::after{content:"";position:absolute;top:14px;right:-16px;width:22px;height:26px;border:3px solid var(--color-secondary);border-left:0;border-radius:0 12px 12px 0}
+.mini-liquid{position:absolute;left:0;right:0;bottom:0;height:25%;background:var(--color-primary);animation:mini-fill 4s ease-in-out infinite alternate}
+@keyframes mini-fill{from{height:25%}to{height:78%}}
+.mini-steam{display:flex;gap:8px;padding-bottom:48px}
+.mini-steam span{display:block;width:6px;height:18px;border-radius:6px;background:var(--color-muted-foreground);opacity:.5;animation:mini-steam 2.4s ease-in-out infinite alternate}
+.mini-steam span:nth-child(2){animation-delay:.4s}
+.mini-steam span:nth-child(3){animation-delay:.8s}
+@keyframes mini-steam{from{transform:translateY(4px);opacity:.25}to{transform:translateY(-2px);opacity:.6}}
