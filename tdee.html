@@ -10,7 +10,7 @@
 </script>
 </head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header><div class="wrap top"><a class="brand" href="index.html"><img src="logo.svg" alt="Zuqva logo" width="36" height="36">Zuqva</a><nav><a href="index.html">Home</a><a href="tdee.html">TDEE Calculator</a><a href="kitchen-converter.html">Kitchen Converter</a><a href="guides/what-is-tdee.html">Guides</a><a href="about.html">About</a></nav></div></header>
+<header><div class="wrap top"><a class="brand" href="/"><img src="logo.svg" alt="Zuqva logo" width="36" height="36">Zuqva</a><nav><a href="/">Home</a><a href="tdee.html">TDEE Calculator</a><a href="kitchen-converter.html">Kitchen Converter</a><a href="guides/what-is-tdee.html">Guides</a><a href="about.html">About</a></nav></div></header>
 <main id="main" class="wrap"><nav class="switcher" aria-label="Choose a tool"><a href="tdee.html" aria-current="page">TDEE Calculator</a><a href="kitchen-converter.html">Kitchen Converter</a></nav><div class="tape" aria-hidden="true"></div><h1>TDEE Calculator</h1><p style="font-size:19px;color:#CBD5E1">Your TDEE — total daily energy expenditure — is an estimate of how many calories you burn in a day. It starts with your BMR, the energy your body uses at rest, then adjusts for how active you are.</p>
 <div class="card"><form onsubmit="event.preventDefault();calcTDEE();">
 <label for="age">Age (years)</label><input id="age" type="number" min="10" max="100" value="30" required>
@@ -23,6 +23,7 @@
 <option value="1.55" selected>Moderately active — moderate exercise 3–5 days a week (×1.55)</option>
 <option value="1.725">Very active — hard exercise 6–7 days a week (×1.725)</option>
 <option value="1.9">Extra active — very hard exercise, physical job (×1.9)</option></select>
+<p class="small">Not sure which level to pick? <a href="guides/tdee-activity-level.html">See how to choose your activity level</a>.</p>
 <p><button class="btn" type="submit">Calculate</button></p></form>
 <div id="tdee-error" class="error" style="display:none"></div>
 <div id="tdee-result" class="result" style="display:none"><strong>Your result</strong>
@@ -33,5 +34,5 @@
 <div class="note"><strong>Estimates only — not medical advice.</strong> This calculator gives a general estimate, not a personal prescription. If you have a medical condition, are pregnant, or are managing your weight for health reasons, talk to a doctor or registered dietitian before changing what you eat.</div>
 <h2>Worked example</h2><p>A 30-year-old man, 80&nbsp;kg, 180&nbsp;cm, moderately active: BMR = 10×80 + 6.25×180 − 5×30 + 5 = <strong>1,780 kcal/day</strong>. TDEE = 1,780 × 1.55 = <strong>2,759 kcal/day</strong>. Cut target = 2,259, maintain = 2,759, bulk = 3,259. Try those exact numbers in the calculator above — you should get the same answer.</p>
 <h2>The formula, in full</h2><p>Men: BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age + 5. Women: BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age − 161. This is the Mifflin-St Jeor equation. TDEE = BMR × activity factor, using the factors shown in the form above.</p>
-<p>Read more: <a href="guides/what-is-tdee.html">What is TDEE?</a> · <a href="guides/tdee-weight-goals.html">Using your TDEE for weight loss, maintenance, or gain</a> · <a href="kitchen-converter.html">Kitchen ingredient converter</a></p></main>
+<p>Read more: <a href="guides/what-is-tdee.html">What is TDEE?</a> &middot; <a href="guides/tdee-activity-level.html">How to choose your activity level</a> · <a href="guides/tdee-weight-goals.html">Using your TDEE for weight loss, maintenance, or gain</a> · <a href="kitchen-converter.html">Kitchen ingredient converter</a></p></main>
 <footer><div class="wrap"><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a> · <a href="tdee.html">TDEE Calculator</a> · <a href="kitchen-converter.html">Kitchen Converter</a></p><p>Two free tools, no signup, no account. Your numbers never leave your browser.</p></div></footer></body></html>
