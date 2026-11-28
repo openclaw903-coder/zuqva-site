@@ -2,9 +2,13 @@
 // Shared logic. Everything runs in the browser; nothing is sent anywhere.
 var US_CUP_ML = 236.6;
 var DENSITIES = {
-  "water": 1.00, "milk": 1.03, "all-purpose flour": 0.53, "granulated sugar": 0.85,
+  "water": 1.00, "milk": 1.03, "all-purpose flour": 0.518, "granulated sugar": 0.841,
   "butter": 0.96, "honey": 1.42, "cooking oil": 0.91,
-  "atta (whole-wheat flour)": 0.507, "suji / semolina": 0.706
+  "atta (whole-wheat flour)": 0.507, "suji / semolina": 0.706,
+  "heavy cream": 1.006, "cocoa powder": 0.363, "lentils (dry)": 0.811, "quinoa (dry)": 0.719,
+  "shredded cheddar": 0.478, "chocolate chips": 0.719, "rice (dry)": 0.782, "rolled oats": 0.342,
+  "beaten egg": 1.027, "corn syrup": 1.390, "powdered sugar": 0.492, "brown sugar (packed)": 0.915,
+  "vegetable oil": 0.920, "dry pasta": 0.393
 };
 function showError(id, msg){ var el=document.getElementById(id); if(el){ el.textContent=msg; el.setAttribute("role","alert"); el.style.display="block"; } }
 function hideError(id){ var el=document.getElementById(id); if(el){ el.style.display="none"; } }
@@ -56,6 +60,14 @@ function convertKitchen(){
   var val=parseFloat(document.getElementById("amount").value);
   if(!(val>0&&val<=100000)) return showError("kitchen-error","Please enter an amount greater than 0.");
   var d=DENSITIES[ing];
+  var customEl=document.getElementById("custom-density");
+  var customRaw=customEl?customEl.value.trim():"";
+  var customUsed=false;
+  if(customRaw!==""){
+    var cd=parseFloat(customRaw);
+    if(!(cd>0&&cd<=10)) return showError("kitchen-error","Please enter a custom density greater than 0 and no more than 10 g/ml.");
+    d=cd; customUsed=true;
+  }
   var grams, ml;
   // Weight inputs -> grams; volume inputs -> ml. Then convert via density.
   if(from==="g"){ grams=val; ml=val/d; }
@@ -81,7 +93,7 @@ function convertKitchen(){
   setText("k-tbsp", r2(ml/14.787));
   setText("k-tsp", r2(ml/4.929));
   setText("k-floz", r2(ml/29.574));
-  setText("k-ing", ing);
+  setText("k-ing", customUsed ? ing+" (custom density)" : ing);
   setText("k-density", d.toFixed(3));
   var toEl=document.getElementById("to-unit"); var to=toEl?toEl.value:"all";
   var toMain=document.getElementById("k-to-main");
@@ -105,3 +117,50 @@ function switchTool(name){
     b.setAttribute("aria-selected", String(isT===showT));
   });
 }
+
+// Per-guide converter widget (one per grams-in-a-cup guide).
+// Reads data-cup-grams (and optional data-tbsp-grams) from the widget markup.
+// US cup is 236.6 ml; a metric cup is 250 ml; tbsp is a cup divided by 16
+// and tsp a cup divided by 48, except where the guide itself gives a
+// tablespoon weight (coffee: 1 level tbsp is about 5 g of grounds).
+var GUIDE_US_CUP_ML = 236.6;
+function convertGuideWidget(widget){
+  var cup = parseFloat(widget.getAttribute("data-cup-grams"));
+  if(!(cup > 0)) return;
+  var amountEl = widget.querySelector(".gw-amount");
+  var unitEl = widget.querySelector(".gw-unit");
+  var gramsEl = widget.querySelector(".gw-grams");
+  var cupsEl = widget.querySelector(".gw-cups");
+  if(!amountEl || !unitEl || !gramsEl || !cupsEl) return;
+  var val = parseFloat(amountEl.value);
+  if(!(val >= 0)) return;
+  var tbspAttr = widget.getAttribute("data-tbsp-grams");
+  var perTbsp = tbspAttr ? parseFloat(tbspAttr) : cup / 16;
+  var perTsp = tbspAttr ? parseFloat(tbspAttr) / 3 : cup / 48;
+  var grams;
+  var unit = unitEl.value;
+  if(unit === "cup") grams = val * cup;
+  else if(unit === "metric-cup") grams = val * cup * 250 / GUIDE_US_CUP_ML;
+  else if(unit === "tbsp") grams = val * perTbsp;
+  else if(unit === "tsp") grams = val * perTsp;
+  else grams = val;
+  gramsEl.textContent = r1(grams);
+  cupsEl.textContent = r2(grams / cup);
+}
+function convertGuideForm(form){
+  var widget = form.closest("[data-guide-converter]");
+  if(widget) convertGuideWidget(widget);
+}
+function initGuideConverters(){
+  var widgets = document.querySelectorAll("[data-guide-converter]");
+  widgets.forEach(function(widget){
+    var name = widget.getAttribute("data-name");
+    if(name) widget.setAttribute("aria-label", "Convert " + name + " to grams");
+    convertGuideWidget(widget);
+    var amountEl = widget.querySelector(".gw-amount");
+    if(amountEl) amountEl.addEventListener("input", function(){ convertGuideWidget(widget); });
+    var unitEl = widget.querySelector(".gw-unit");
+    if(unitEl) unitEl.addEventListener("change", function(){ convertGuideWidget(widget); });
+  });
+}
+if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", initGuideConverters); } else { initGuideConverters(); }

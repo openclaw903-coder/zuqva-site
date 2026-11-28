@@ -37,6 +37,75 @@
         "@type": "Answer",
         "text": "Not daily. Recalculate when something real changes: your weight has shifted by several kilograms, your job or training routine has changed, or a few weeks at your target calories have not moved your weight the way you expected."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What macros should I eat at my TDEE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no single right split. One common split is 30 percent protein, 40 percent carbs, and 30 percent fat. At the maintain target of 2,759 calories a day, that is about 207 g of protein, 276 g of carbs, and 92 g of fat. The cut and bulk versions are in the macros table above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which BMR formula should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mifflin-St Jeor is a good default, and it is the one this calculator uses. Harris-Benedict gives 1,854 instead of 1,780 for the worked example, a difference of 74 calories. Katch-McArdle is useful only if you know your body fat percentage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the lowest calorie target I should use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As general guidance, many sources cite 1,200 calories a day as a floor for women and 1,500 a day for men. Do not go below those figures without professional guidance. If your TDEE minus 500 falls below your floor, use the floor as your target and talk to a doctor or registered dietitian."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use the TDEE calculator",
+  "description": "Calculate your BMR and TDEE with the Mifflin-St Jeor formula, plus cut, maintain and bulk calorie targets.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Enter your age",
+      "text": "Enter your age in years."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Choose your sex",
+      "text": "Choose your sex."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your height",
+      "text": "Enter your height and choose its unit."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your weight",
+      "text": "Enter your weight and choose its unit."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Choose your activity level",
+      "text": "Choose your activity level."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Press Calculate",
+      "text": "Press Calculate."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Read your result",
+      "text": "Read your BMR, TDEE, maintain, cut, and bulk results."
     }
   ]
 }
@@ -66,6 +135,11 @@
 <p class="small" style="margin-top:10px"><span id="tdee-converted"></span></p><p style="margin-top:14px"><strong>Cut:</strong> <span id="cut"></span> kcal/day (TDEE − 500) · <strong>Bulk:</strong> <span id="bulk"></span> kcal/day (TDEE + 500)</p></div></div>
 <div class="note"><strong>Estimates only — not medical advice.</strong> This calculator gives a general estimate, not a personal prescription. If you have a medical condition, are pregnant, or are managing your weight for health reasons, talk to a doctor or registered dietitian before changing what you eat.</div>
 <h2>Worked example</h2><p>A 30-year-old man, 80&nbsp;kg, 180&nbsp;cm, moderately active: BMR = 10×80 + 6.25×180 − 5×30 + 5 = <strong>1,780 kcal/day</strong>. TDEE = 1,780 × 1.55 = <strong>2,759 kcal/day</strong>. Cut target = 2,259, maintain = 2,759, bulk = 3,259. Try those exact numbers in the calculator above — you should get the same answer.</p>
+<h2>TDEE at every activity level</h2><p>The worked example uses moderately active, times 1.55. The same BMR of 1,780 gives a different TDEE at each level.</p><table><tr><th>Activity level</th><th>Factor</th><th>TDEE</th><th>Cut</th><th>Bulk</th></tr><tr><td>Sedentary</td><td>1.2</td><td>2,136</td><td>1,636</td><td>2,636</td></tr><tr><td>Lightly active</td><td>1.375</td><td>2,448</td><td>1,948</td><td>2,948</td></tr><tr><td>Moderately active</td><td>1.55</td><td>2,759</td><td>2,259</td><td>3,259</td></tr><tr><td>Very active</td><td>1.725</td><td>3,071</td><td>2,571</td><td>3,571</td></tr><tr><td>Extra active</td><td>1.9</td><td>3,382</td><td>2,882</td><td>3,882</td></tr></table><p class="small">Figures are rounded to the nearest whole calorie.</p>
+<h2>What macros look like at 2,759 calories</h2><p>Macros split that total across protein, carbs, and fat. The calculator does not work out macros, so here is the worked example by hand, using one common split: 30 percent protein, 40 percent carbs, and 30 percent fat. Not a prescription, and not medical advice.</p><p>Protein and carbs each carry 4 calories per gram, and fat carries 9. At 2,759 calories a day, that is about 828 calories of protein, 1,104 of carbs, and 828 of fat, or about 207 g of protein, 276 g of carbs, and 92 g of fat.</p><table><tr><th>Target</th><th>Calories</th><th>Protein</th><th>Carbs</th><th>Fat</th></tr><tr><td>Maintain</td><td>2,759</td><td>207 g</td><td>276 g</td><td>92 g</td></tr><tr><td>Cut</td><td>2,259</td><td>169 g</td><td>226 g</td><td>75 g</td></tr><tr><td>Bulk</td><td>3,259</td><td>244 g</td><td>326 g</td><td>109 g</td></tr></table>
+<h2>A second formula: Harris-Benedict</h2><p>The calculator uses Mifflin-St Jeor. Harris-Benedict, published by Harris and Benedict in 1918, is an older formula many other calculators still offer. Men: BMR = 88.362 + 13.397 times weight in kg + 4.799 times height in cm minus 5.677 times age. Women: BMR = 447.593 + 9.247 times weight in kg + 3.098 times height in cm minus 4.330 times age.</p><p>For the worked example, Harris-Benedict gives 88.362 + 1,071.76 + 863.82 minus 170.31 = 1,854 calories a day, 74 above the Mifflin-St Jeor figure of 1,780, a difference of about 4 percent.</p>
+<h2>Katch-McArdle and body fat</h2><p>Katch-McArdle starts from lean body mass instead of total weight, so it needs a body fat percentage. BMR = 370 + 21.6 times lean body mass in kg, where lean body mass is weight times 1 minus body fat as a decimal.</p><p>For the same 80 kg man at 20 percent body fat, lean body mass is 80 times 0.80 = 64 kg, and BMR is 370 + 21.6 times 64 = 370 + 1,382.4 = 1,752 calories a day, 28 below the Mifflin-St Jeor figure of 1,780. It needs a reliable body fat measurement, so this calculator does not ask for one.</p>
+<h2>Calorie safety floors</h2><p>A cut target should not keep dropping. The minimums most often quoted are 1,200 calories a day for women and 1,500 a day for men. They are general guidance, not medical advice, and not a target to aim for. If TDEE minus 500 falls below the floor for your sex, use the floor instead and talk to a doctor or registered dietitian before going lower.</p>
 <h2>The formula, in full</h2><p>Men: BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age + 5. Women: BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age − 161. This is the Mifflin-St Jeor equation. TDEE = BMR × activity factor, using the factors shown in the form above.</p>
 <h2>How to read your result</h2>
 <p>The calculator gives you three numbers. <strong>BMR</strong> is what your body burns at rest: breathing, keeping your heart beating, staying warm. <strong>TDEE</strong> is BMR multiplied by your activity factor, so it is the number that matches a normal day, not a day spent lying still. That is why TDEE, not BMR, is the figure to plan your eating around.</p>
@@ -77,5 +151,8 @@
 <p><strong>Should I eat my BMR or my TDEE?</strong> Your TDEE. BMR is what you would burn lying still all day; nobody eats for a day spent lying still. The difference between the two is explained in <a href="guides/bmr-vs-tdee.html">BMR vs TDEE</a>.</p>
 <p><strong>Why does my TDEE jump when I change the activity level?</strong> Because the activity factor multiplies your BMR, moving from 1.2 (sedentary) to 1.55 (moderately active) raises the result by almost a third. Choosing honestly matters more than choosing hopefully; if you are unsure, see <a href="guides/tdee-activity-level.html">how to choose your activity level</a>.</p>
 <p><strong>Do I need to recalculate often?</strong> Not daily. Recalculate when something real changes: your weight has shifted by several kilograms, your job or training routine has changed, or a few weeks at your target calories have not moved your weight the way you expected.</p>
+<p><strong>What macros should I eat at my TDEE?</strong> There is no single right split. One common split is 30 percent protein, 40 percent carbs, and 30 percent fat. At the maintain target of 2,759 calories a day, that is about 207 g of protein, 276 g of carbs, and 92 g of fat. The cut and bulk versions are in the macros table above.</p>
+<p><strong>Which BMR formula should I use?</strong> Mifflin-St Jeor is a good default, and it is the one this calculator uses. Harris-Benedict gives 1,854 instead of 1,780 for the worked example, a difference of 74 calories. Katch-McArdle is useful only if you know your body fat percentage.</p>
+<p><strong>What is the lowest calorie target I should use?</strong> As general guidance, many sources cite 1,200 calories a day as a floor for women and 1,500 a day for men. Do not go below those figures without professional guidance. If your TDEE minus 500 falls below your floor, use the floor as your target and talk to a doctor or registered dietitian.</p>
 <p>Read more: <a href="guides/what-is-tdee.html">What is TDEE?</a> &middot; <a href="guides/tdee-activity-level.html">How to choose your activity level</a> · <a href="guides/tdee-weight-goals.html">Using your TDEE for weight loss, maintenance, or gain</a> · <a href="kitchen-converter.html">Kitchen ingredient converter</a></p></main>
 <footer><div class="wrap"><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a> · <a href="tdee.html">TDEE Calculator</a> · <a href="kitchen-converter.html">Kitchen Converter</a></p><p>Two free tools, no signup, no account. Your numbers never leave your browser.</p></div></footer></body></html>
